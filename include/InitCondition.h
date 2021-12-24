@@ -11,4 +11,4 @@ std::vector<double> Vect0();
 
 std::vector<double>  vectp(int n);
 
-std::vector<double> transformp(std::vector<double> U);
+std::vector<double> transformp(std::vector<double> U,double x);

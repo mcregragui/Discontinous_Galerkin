@@ -7,23 +7,25 @@
 #include "include/InitCondition.h"
 #include<fstream>
 
-double dx(0.1), dt(0.01), adv(1), L(40);
-int ord(1), r(2);
+double dx(0.1), dt(0.001), adv(1), L(10);
+int ord(3), r(2);
 
 
 int main()
 {
     std::vector<double> sol(ord*std::floor(L/dx),0);
+    //std::vector<double> sol(ord*std::floor(L/dx),0);
      
-    for(int i=0;i<ord*std::floor(L/dx);i++)
+    /*for(int i=0;i<ord*std::floor(L/dx);i++)
     {
         sol[i]=u0(i*dx);
-    }
+    }*/
+    sol=Quadrature0();
 
 
-    int n=10;
-    std::vector<double> temp(ord*std::floor(L/dx),0);
-    for(int i=0;i<ord*std::floor(L/dx);i++)
+    int n=50;
+    std::vector<double> temp(std::floor(L/dx),0);
+    for(int i=0;i<std::floor(L/dx);i++)
     {
         temp[i]=u0(i*dx-adv*n*dt);
     }
@@ -35,9 +37,11 @@ int main()
 
     std::ofstream myfile;
     myfile.open ("example.txt");
+    std::vector<double> sol0(ord*std::floor(L/dx),0);
+    sol0=Quadrature0();
     for(int i=0;i<std::floor(L/dx);i++)
     {
-        myfile <<i*dx<<" "<<temp[ord*i]<<" "<<sol[ord*i]<<std::endl;
+        myfile <<i*dx<<" "<<temp[i]<<" "<<transformp(sol,i*dx)[i]<<" "<<transformp(sol,i*dx)[i]-temp[i] <<std::endl;
     }
    
     myfile.close();
