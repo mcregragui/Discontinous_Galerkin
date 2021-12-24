@@ -14,4 +14,4 @@ double LLF(double a, double b);
 
 double Roe(double a, double b);
 
-double Flux(char flux,double a, double b);
+double Flux(int flux,double a, double b);

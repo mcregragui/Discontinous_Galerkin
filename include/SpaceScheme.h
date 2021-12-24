@@ -5,4 +5,7 @@
 #include "Flux.h"
 #include "limiter.h"
 
-double Numeric_flux(double a, double b,int j,int c, char flux);
+double Numeric_flux(std::vector<double>& sol,int j,int c, int flux);
+
+
+std::vector<double> LH(std::vector<double> sol, int flux);

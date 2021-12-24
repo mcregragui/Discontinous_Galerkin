@@ -51,20 +51,20 @@ double Roe(double a, double b)
     }   
 }
 
-double Flux(char flux,double a, double b)
+double Flux(int flux,double a, double b)
 {
     switch (flux)
     {
-    case 'EO':
+    case 1:
         return EO(a,b);
 
-    case 'G':
+    case 2:
         return G(a,b);
     
-    case 'LF':
+    case 3:
         return LF(a,b);
     
-    case 'Roe':
+    case 4:
         return Roe(a,b);
     
     default:

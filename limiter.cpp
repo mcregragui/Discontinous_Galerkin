@@ -50,7 +50,7 @@ int sign(double a)
     }
 }
 
-double left(int j)
+double left(std::vector<double>& sol,int j)
 {
     switch (ord)
     {
@@ -69,7 +69,7 @@ double left(int j)
     }
 }
 
-double wright(int j)
+double wright(std::vector<double>& sol,int j)
 {
     switch (ord)
     {
@@ -86,4 +86,56 @@ double wright(int j)
         std::cout<<"higher order: "<<ord<<std::endl;
         break;
     }
+}
+
+double leftMod(std::vector<double>& sol,int j)
+{
+    if(j==0)
+    {
+        double a=left(sol,j);
+        double b=sol[ord*(j+1)]-sol[ord*(j)];
+        double c=0;
+        return minmod(a,b,c);
+    }
+    if(j==std::floor(L/dx)-1)
+    {
+        double a=left(sol,j);
+        double b=0;
+        double c=sol[ord*(j)]-sol[ord*(j-1)];
+        return minmod(a,b,c);
+    }
+    else
+    {
+        double a=left(sol,j);
+        double b=sol[ord*(j+1)]-sol[ord*(j)];
+        double c=sol[ord*(j)]-sol[ord*(j-1)];
+        return minmod(a,b,c);
+    }
+    
+}
+
+double wrightMod(std::vector<double>& sol,int j)
+{
+    if(j==0)
+    {
+        double a=wright(sol,j);
+        double b=sol[ord*(j+1)]-sol[ord*(j)];
+        double c=0;
+        return minmod(a,b,c);
+    }
+    if(j==std::floor(L/dx)-1)
+    {
+        double a=wright(sol,j);
+        double b=0;
+        double c=sol[ord*(j)]-sol[ord*(j-1)];
+        return minmod(a,b,c);
+    }
+    else
+    {
+        double a=wright(sol,j);
+        double b=sol[ord*(j+1)]-sol[ord*(j)];
+        double c=sol[ord*(j)]-sol[ord*(j-1)];
+        return minmod(a,b,c);
+    }
+    
 }
